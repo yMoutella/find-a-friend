@@ -1,0 +1,14 @@
+{
+  "name": "find-a-friend",
+  "version": "1.0.0",
+  "description": "A API for pet adoption",
+  "main": "index.js",
+  "repository": "git@github.com:yMoutella/find-a-friend.git",
+  "author": "Yure Moutella <ymoutella@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "5.4.0",
+    "tsc": "2.0.4",
+    "typescript": "5.8.3"
+  }
+}
