@@ -4,7 +4,7 @@ Application for pet adoption
 
 ## Rules
 
-- [ ] Must be possible to register a Pet
+- [x] Must be possible to register a Pet
 - [ ] Must be possible to list all pets available to adoption in a town
 - [ ] Must be possible to filter pets by they characteristics
 - [ ] Must be possible to visualize the available pet detail
