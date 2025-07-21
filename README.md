@@ -9,7 +9,7 @@ Application for pet adoption
 - [ ] Must be possible to filter pets by they characteristics
 - [ ] Must be possible to visualize the available pet detail
 - [ ] Must be possible to be registered as a ONG
-- [ ] Must be possible to login as a ONG
+- [x] Must be possible to login as a ONG
 
 ## Business Rules
 

@@ -1,8 +1,9 @@
-import { Org } from '@prisma/client'
-import { Prisma } from '@prisma/client'
+import { OrgRepository } from '@/repositories/org-repository'
+import { Org, Prisma } from '@prisma/client'
 import { Decimal } from '@prisma/client/runtime/binary'
 import { randomUUID } from 'crypto'
-import { OrgRepository } from '../org-repository'
+import OrganizationNotFoundError from '@/usecases/errors/organization-not-found-error'
+import { _ } from 'vitest/dist/chunks/reporters.d.BFLkQcL6'
 
 export default class OrgInMemoryRepository implements OrgRepository {
   private orgs: Org[] = []
@@ -32,6 +33,16 @@ export default class OrgInMemoryRepository implements OrgRepository {
       ),
     }
     this.orgs.push(org)
+    return Promise.resolve(org)
+  }
+
+  findById(id: string): Promise<Org | null> {
+    const org = this.orgs.find((org) => org.id === id)
+
+    if (!org) {
+      return Promise.resolve(null)
+    }
+
     return Promise.resolve(org)
   }
 }
