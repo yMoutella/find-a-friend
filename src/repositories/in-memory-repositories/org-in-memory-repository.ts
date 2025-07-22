@@ -1,16 +1,14 @@
-import { OrgRepository } from '@/repositories/org-repository'
+import OrgRepository from '@/repositories/org-repository'
 import { Org, Prisma } from '@prisma/client'
 import { Decimal } from '@prisma/client/runtime/binary'
 import { randomUUID } from 'crypto'
-import OrganizationNotFoundError from '@/usecases/errors/organization-not-found-error'
-import { _ } from 'vitest/dist/chunks/reporters.d.BFLkQcL6'
 
-export default class OrgInMemoryRepository implements OrgRepository {
+export default class InMemoryOrgRepository implements OrgRepository {
   private orgs: Org[] = []
 
   create(data: Prisma.OrgUncheckedCreateInput): Promise<Org> {
     const org: Org = {
-      id: randomUUID(),
+      id: data.id || randomUUID(),
       name: data.name,
       author_name: data.author_name,
       email: data.email,
@@ -44,5 +42,15 @@ export default class OrgInMemoryRepository implements OrgRepository {
     }
 
     return Promise.resolve(org)
+  }
+
+  listByTown(state: string, city?: string): Promise<Org[]> {
+    const orgs = this.orgs.filter((org) => org.state === state)
+
+    if (city) {
+      return Promise.resolve(orgs.filter((org) => org.city === city))
+    }
+
+    return Promise.resolve(orgs)
   }
 }

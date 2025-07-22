@@ -1,7 +1,7 @@
 import { Pet } from '@prisma/client'
 import PetRepository from '@/repositories/pet-repository'
 import { OrgRepository } from '@/repositories/org-repository'
-import OrganizationNotFoundError from '../errors/organization-not-found-error'
+import ResourceNotFoundError from '../errors/resource-not-found-error'
 
 interface RegisterPetUseCaseRequest {
   name: string
@@ -26,11 +26,10 @@ export default class RegisterPetUseCase {
   async execute(
     data: RegisterPetUseCaseRequest
   ): Promise<RegisterPetUseCaseResponse> {
-
     const org = await this.orgRepository.findById(data.org_id)
 
     if (!org) {
-      throw new OrganizationNotFoundError()
+      throw new ResourceNotFoundError()
     }
 
     const createdPet = await this.petRepository.create({

@@ -1,7 +1,7 @@
 import { hash } from 'node:crypto'
 import { OrgRepository } from '../../repositories/org-repository'
 import { Org } from '@prisma/client'
-import { genSaltSync, hashSync } from 'bcryptjs'
+import { hashSync } from 'bcryptjs'
 
 interface RegisterOrgUseCaseRequest {
   name: string

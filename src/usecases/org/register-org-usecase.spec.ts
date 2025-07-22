@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import OrgInMemoryRepository from '../../repositories/in-memory-repositories/org-in-memory-repository'
+import InMemoryOrgRepository from '@/repositories/in-memory-repositories/org-in-memory-repository'
 import RegisterOrgUseCase from './register-org-usecase'
-import { OrgRepository } from '../../repositories/org-repository'
+import OrgRepository from '@/repositories/org-repository'
 import { compareSync } from 'bcryptjs'
 
 let registerOrgRepository: OrgRepository
@@ -9,7 +9,7 @@ let orgUseCase: RegisterOrgUseCase
 
 describe('Register Org Usecase (UNIT)', () => {
   beforeEach(() => {
-    registerOrgRepository = new OrgInMemoryRepository()
+    registerOrgRepository = new InMemoryOrgRepository()
     orgUseCase = new RegisterOrgUseCase(registerOrgRepository)
   })
   it('Should be able to register an organization', async () => {

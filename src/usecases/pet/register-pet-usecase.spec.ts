@@ -4,6 +4,7 @@ import RegisterPetUseCase from './register-pet-usecase'
 import OrgInMemoryRepository from '../../repositories/in-memory-repositories/org-in-memory-repository'
 import { OrgRepository } from '@/repositories/org-repository'
 import PetRepository from '@/repositories/pet-repository'
+import ResourceNotFoundError from '../errors/resource-not-found-error'
 
 let petRepository: PetRepository
 let orgRepository: OrgRepository
@@ -55,25 +56,16 @@ describe('Register Pet Usecase (UNIT)', () => {
   })
 
   it('Should not be able to register a pet', async () => {
-    const { pet } = await sut.execute({
-      name: 'Buddy',
-      age: '2',
-      about: 'A friendly dog',
-      size: 'MEDIUM',
-      energy_level: 'HIGH',
-      environment: 'INDOOR',
-      org_id: 'mock123',
-    })
-
-    expect(pet).toEqual({
-      id: expect.any(String),
-      name: expect.any(String),
-      age: expect.any(String),
-      about: expect.any(String),
-      size: expect.any(String),
-      energy_level: expect.any(String),
-      environment: expect.any(String),
-      org_id: expect.any(String),
-    })
+    expect(async () => {
+      await sut.execute({
+        name: 'Buddy',
+        age: '2',
+        about: 'A friendly dog',
+        size: 'MEDIUM',
+        energy_level: 'HIGH',
+        environment: 'INDOOR',
+        org_id: 'mock123',
+      })
+    }).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })
