@@ -7,7 +7,7 @@ import { randomUUID } from 'crypto'
 import { getDistance } from 'geolib'
 
 export default class InMemoryOrgRepository implements OrgRepository {
-  private orgs: Org[] = []
+  public orgs: Org[] = []
 
   create(data: Prisma.OrgUncheckedCreateInput): Promise<Org> {
     const org: Org = {

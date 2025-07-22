@@ -19,7 +19,7 @@ describe('Get Pet Details Usecase (UNIT)', () => {
   })
 
   it('Should be able to get pet details', async () => {
-    createMockOrgSP(orgRepository)
+    await createMockOrgSP(orgRepository)
 
     await petRepository.create({
       name: 'Buddy V2',
@@ -51,7 +51,7 @@ describe('Get Pet Details Usecase (UNIT)', () => {
   })
 
   it('Should not be able to get pet details', async () => {
-    createMockOrgSP(orgRepository)
+    await createMockOrgSP(orgRepository)
 
     await petRepository.create({
       name: 'Buddy V2',

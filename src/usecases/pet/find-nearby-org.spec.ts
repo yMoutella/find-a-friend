@@ -16,7 +16,7 @@ describe('Find Nearby Org Usecase (UNIT)', () => {
   })
 
   it('should no nearby organizations given latitude and longitude', async () => {
-    createMockOrgSP(orgRepository)
+    await createMockOrgSP(orgRepository)
 
     const params: findNearbyOrgsParams = {
       latitude: 0,
@@ -29,8 +29,7 @@ describe('Find Nearby Org Usecase (UNIT)', () => {
   })
 
   it('should nearby organizations given latitude and longitude', async () => {
-    createMockOrgSP(orgRepository)
-
+    await createMockOrgSP(orgRepository)
     const params: findNearbyOrgsParams = {
       latitude: -23.55,
       longitude: -46.63,

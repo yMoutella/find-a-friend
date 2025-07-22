@@ -19,7 +19,7 @@ describe('List Pet Usecase (UNIT)', () => {
   })
 
   it('Should be able to retrieve the second page of pets list', async () => {
-    createMockOrgSP(orgRepository)
+    await createMockOrgSP(orgRepository)
 
     for (let i = 1; i <= 24; i++) {
       await petRepository.create({
@@ -39,7 +39,7 @@ describe('List Pet Usecase (UNIT)', () => {
   })
 
   it('Should be able to retrieve the first page of pets list', async () => {
-    createMockOrgSP(orgRepository)
+    await createMockOrgSP(orgRepository)
     for (let i = 1; i <= 24; i++) {
       await petRepository.create({
         name: `Pet ${i}`,
