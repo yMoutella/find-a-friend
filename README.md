@@ -7,7 +7,7 @@ Application for pet adoption
 - [x] Must be possible to register a Pet
 - [x] Must be possible to list all pets available to adoption in a town
 - [x] Must be possible to filter pets by they characteristics
-- [ ] Must be possible to visualize the available pet detail
+- [x] Must be possible to visualize the available pet detail
 - [x] Must be possible to be registered as a ONG
 - [ ] Must be possible to login as a ONG
 

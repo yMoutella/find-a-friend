@@ -1,6 +1,9 @@
-import { Prisma, Pet, Org } from '@prisma/client'
+import { Prisma, Pet } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
-import PetRepository, { listPetsParams } from '../pet-repository'
+import PetRepository, {
+  listPetsParams,
+  searchByNameParams,
+} from '../pet-repository'
 import OrgRepository from '../org-repository'
 
 export default class InMemoryPetRepository implements PetRepository {
@@ -33,7 +36,27 @@ export default class InMemoryPetRepository implements PetRepository {
           params.energy_level ? pet.energy_level === params.energy_level : true
         )
         .filter((pet) => (params.size ? pet.size === params.size : true))
+        .filter((pet) =>
+          params.name
+            ? pet.name.toLowerCase().includes(params.name.toLowerCase())
+            : true
+        )
         .slice((params.page - 1) * 20, params.page * 20)
     )
+  }
+
+  findById(petId: string, orgId?: string): Promise<Pet | null> {
+    const pet = this.pets.find(
+      (pet) => pet.id === petId && (!orgId || pet.org_id === orgId)
+    )
+
+    return Promise.resolve(pet || null)
+  }
+
+  searchByName({ page, name, orgId }: searchByNameParams): Promise<Pet[]> {
+    const pets = this.pets
+      .filter((pet) => pet.name.toLowerCase().includes(name.toLowerCase()))
+      .filter((pet) => !orgId || pet.org_id === orgId)
+    return Promise.resolve(pets.slice((page - 1) * 20, page * 20))
   }
 }

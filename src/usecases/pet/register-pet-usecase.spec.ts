@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import InMemoryPetRepository from '../../repositories/in-memory-repositories/pet-in-memory-repository'
 import RegisterPetUseCase from './register-pet-usecase'
 import OrgInMemoryRepository from '../../repositories/in-memory-repositories/org-in-memory-repository'
-import { OrgRepository } from '@/repositories/org-repository'
+import OrgRepository from '@/repositories/org-repository'
 import PetRepository from '@/repositories/pet-repository'
 import ResourceNotFoundError from '../errors/resource-not-found-error'
 
@@ -12,8 +12,8 @@ let sut: RegisterPetUseCase
 
 describe('Register Pet Usecase (UNIT)', () => {
   beforeEach(() => {
-    petRepository = new InMemoryPetRepository()
     orgRepository = new OrgInMemoryRepository()
+    petRepository = new InMemoryPetRepository(orgRepository)
     sut = new RegisterPetUseCase(petRepository, orgRepository)
   })
 

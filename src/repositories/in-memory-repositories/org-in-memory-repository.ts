@@ -1,7 +1,10 @@
-import OrgRepository from '@/repositories/org-repository'
+import OrgRepository, {
+  findNearbyOrgsParams,
+} from '@/repositories/org-repository'
 import { Org, Prisma } from '@prisma/client'
 import { Decimal } from '@prisma/client/runtime/binary'
 import { randomUUID } from 'crypto'
+import { getDistance } from 'geolib'
 
 export default class InMemoryOrgRepository implements OrgRepository {
   private orgs: Org[] = []
@@ -52,5 +55,26 @@ export default class InMemoryOrgRepository implements OrgRepository {
     }
 
     return Promise.resolve(orgs)
+  }
+
+  findNearbyOrgs(params: findNearbyOrgsParams): Promise<Org[]> {
+    const distance = (orgLatitude: number, orgLongitude: number): number => {
+      return getDistance(
+        {
+          latitude: params.latitude,
+          longitude: params.longitude,
+        },
+        {
+          latitude: orgLatitude,
+          longitude: orgLongitude,
+        }
+      )
+    }
+    const filteredOrgs = this.orgs.filter(
+      (org) =>
+        distance(org.latitude.toNumber(), org.longitude.toNumber()) <= 10000
+    )
+
+    return Promise.resolve(filteredOrgs)
   }
 }

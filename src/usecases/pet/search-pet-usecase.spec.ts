@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import PetRepository from '@/repositories/pet-repository'
 import OrgRepository from '@/repositories/org-repository'
-import ListPetUseCase from './list-pet-usecase'
+import ListPetUseCase from './search-pet-usecase'
 import InMemoryPetRepository from '@/repositories/in-memory-repositories/pet-in-memory-repository'
 import InMemoryOrgRepository from '@/repositories/in-memory-repositories/org-in-memory-repository'
 import createMockOrgSP from '@/utils/create-mock-org-sp'
