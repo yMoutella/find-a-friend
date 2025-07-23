@@ -52,9 +52,17 @@ export default class PrismaOrgRepository implements OrgRepository {
     longitude,
   }: findNearbyOrgsParams): Promise<Org[]> {
     return prisma.$queryRaw<Org[]>`
-     SELECT * from gyms
+     SELECT * from orgs
       WHERE ( 6371 * acos( cos( radians(${latitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin( radians( latitude ) ) ) ) <= 10
       LIMIT 20 
 `
+  }
+
+  findByEmail(email: string): Promise<Org | null> {
+    return prisma.org.findUnique({
+      where: {
+        email,
+      },
+    })
   }
 }

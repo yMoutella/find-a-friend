@@ -3,7 +3,7 @@ import z from 'zod'
 const _envSchema = z.object({
   NODE_ENV: z.enum(['dev', 'prod', 'test']),
   DATABASE_URL: z.string(),
-  PORT: z.string().min(4).max(4).regex(/^\d+$/, 'must be a number'),
+  PORT: z.string().min(4).max(4),
   JWT_SECRET: z.string().min(10).max(100),
 })
 

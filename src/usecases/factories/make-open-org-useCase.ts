@@ -1,8 +1,8 @@
 import PrismaOrgRepository from '@/repositories/prisma-repositories/org-repository'
-import FindOrgUseCase from '../org/find-org-useCase'
+import OpenOrgUseCase from '../org/open-org-useCase'
 
-export default function makeFindOrgUseCase() {
+export default function makeOpenOrgUseCase() {
   const orgRepository = new PrismaOrgRepository()
-  const findOrgUseCase = new FindOrgUseCase(orgRepository)
+  const findOrgUseCase = new OpenOrgUseCase(orgRepository)
   return findOrgUseCase
 }

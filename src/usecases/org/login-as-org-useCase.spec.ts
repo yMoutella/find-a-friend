@@ -16,7 +16,7 @@ describe('Login as org (UNIT)', () => {
   it('Should be able to login as org', async () => {
     await createMockOrgSP(orgRepository)
     const { org } = await sut.execute({
-      id: 'org-sp',
+      email: 'org-sp@example.com',
       password: 'securepassword',
     })
 
@@ -28,7 +28,10 @@ describe('Login as org (UNIT)', () => {
   it('Should return an invalid credentials error', async () => {
     await createMockOrgSP(orgRepository)
     await expect(async () => {
-      await sut.execute({ id: 'org-sp', password: 'wrongpassword' })
+      await sut.execute({
+        email: 'org-sp@example.com',
+        password: 'wrongpassword',
+      })
     }).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 })

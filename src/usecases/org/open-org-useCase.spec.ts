@@ -1,18 +1,18 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import InMemoryOrgRepository from '@/repositories/in-memory-repositories/org-in-memory-repository'
-import FindOrgUseCase from './find-org-useCase'
 import ResourceNotFoundError from '../errors/resource-not-found-error'
 import { hashSync } from 'bcryptjs'
+import OpenOrgUseCase from './open-org-useCase'
 
 let orgRepository: InMemoryOrgRepository
-let sut: FindOrgUseCase
+let sut: OpenOrgUseCase
 
-describe('Find org usecase (UNIT)', () => {
+describe('Open org usecase (UNIT)', () => {
   beforeEach(() => {
     orgRepository = new InMemoryOrgRepository()
-    sut = new FindOrgUseCase(orgRepository)
+    sut = new OpenOrgUseCase(orgRepository)
   })
-  it('Should be able to find an organization', async () => {
+  it('Should be able to open an organization', async () => {
     const hashedPassword = await hashSync('securepassword', 6)
     await orgRepository.create({
       id: 'org-sp',

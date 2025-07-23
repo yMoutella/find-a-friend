@@ -77,4 +77,14 @@ export default class InMemoryOrgRepository implements OrgRepository {
 
     return Promise.resolve(filteredOrgs)
   }
+
+  findByEmail(email: string): Promise<Org | null> {
+    const org = this.orgs.find((org) => org.email === email)
+
+    if (!org) {
+      return Promise.resolve(null)
+    }
+
+    return Promise.resolve(org)
+  }
 }

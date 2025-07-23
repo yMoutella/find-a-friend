@@ -2,20 +2,20 @@ import OrgRepository from '@/repositories/org-repository'
 import { Org } from '@prisma/client'
 import ResourceNotFoundError from '../errors/resource-not-found-error'
 
-interface FindOrgUseCaseRequest {
+interface OpenOrgUseCaseRequest {
   id: string
 }
 
-interface FindOrgUseCaseResponse {
+interface OpenOrgUseCaseResponse {
   org: Org
 }
 
-export default class FindOrgUseCase {
+export default class OpenOrgUseCase {
   constructor(private orgRepository: OrgRepository) {}
 
   async execute({
     id,
-  }: FindOrgUseCaseRequest): Promise<FindOrgUseCaseResponse> {
+  }: OpenOrgUseCaseRequest): Promise<OpenOrgUseCaseResponse> {
     const org = await this.orgRepository.findById(id)
 
     if (!org) {
@@ -23,7 +23,10 @@ export default class FindOrgUseCase {
     }
 
     return {
-      org,
+      org: {
+        ...org,
+        password: '',
+      },
     }
   }
 }

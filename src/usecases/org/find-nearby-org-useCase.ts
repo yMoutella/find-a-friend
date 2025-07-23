@@ -13,11 +13,10 @@ interface FindNearbyOrgUseCaseResponse {
 export default class FindNearbyOrgUseCase {
   constructor(private orgRepository: OrgRepository) {}
 
-  async execute(
-    data: FindNearbyOrgUseCaseRequest
-  ): Promise<FindNearbyOrgUseCaseResponse> {
-    const { latitude, longitude } = data
-
+  async execute({
+    latitude,
+    longitude,
+  }: FindNearbyOrgUseCaseRequest): Promise<FindNearbyOrgUseCaseResponse> {
     const orgs = await this.orgRepository.findNearbyOrgs({
       latitude,
       longitude,

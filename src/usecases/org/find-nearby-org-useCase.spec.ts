@@ -2,7 +2,7 @@ import OrgRepository, {
   findNearbyOrgsParams,
 } from '@/repositories/org-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
-import FindNearbyOrgUseCase from './find-nearby-org'
+import FindNearbyOrgUseCase from './find-nearby-org-useCase'
 import InMemoryOrgRepository from '@/repositories/in-memory-repositories/org-in-memory-repository'
 import createMockOrgSP from '@/utils/create-mock-org-sp'
 

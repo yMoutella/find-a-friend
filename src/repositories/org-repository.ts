@@ -8,6 +8,7 @@ export interface findNearbyOrgsParams {
 export default interface OrgRepository {
   create(data: Prisma.OrgUncheckedCreateInput): Promise<Org>
   findById(id: string): Promise<Org | null>
+  findByEmail(email: string): Promise<Org | null>
   listByTown(state: string, city?: string): Promise<Org[]>
   findNearbyOrgs(params: findNearbyOrgsParams): Promise<Org[]>
 }

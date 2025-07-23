@@ -1,5 +1,5 @@
 import { hash } from 'node:crypto'
-import { OrgRepository } from '../../repositories/org-repository'
+import OrgRepository from '../../repositories/org-repository'
 import { Org } from '@prisma/client'
 import { hashSync } from 'bcryptjs'
 
