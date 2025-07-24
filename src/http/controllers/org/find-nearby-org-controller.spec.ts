@@ -11,7 +11,9 @@ describe('Find Nearby Org Controller (E2E)', () => {
   })
 
   it('should find nearby organizations', async () => {
-    const org = await request(app.server).post('/org/nearby').send({
+    const {
+      body: { org },
+    } = await request(app.server).post('/org').send({
       name: 'Pet Shelter',
       author_name: 'John Doe',
       email: 'john.doe@example.com',
@@ -27,7 +29,7 @@ describe('Find Nearby Org Controller (E2E)', () => {
     })
 
     const response = await request(app.server)
-      .post('/org/find-nearby')
+      .post('/org/nearby')
       .send({
         latitude: -23.5505,
         longitude: -46.6333,
