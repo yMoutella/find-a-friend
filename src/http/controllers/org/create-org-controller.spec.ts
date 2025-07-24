@@ -27,8 +27,6 @@ describe('Create Org Cotroller (E2E)', () => {
       longitude: -46.6333,
     })
 
-    console.log(response.body)
-
     const {
       body: { org },
     } = response
