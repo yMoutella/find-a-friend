@@ -19,3 +19,6 @@ Application for pet adoption
 - [x] The user adopting a pet, will have to enter in contact with the responsible ONG via whatsapp
 - [x] All filters, besides town, are optional.
 - [x] To a ONG access the application as ADMIN, it's necessary to be logged in.
+
+
+FINISHED
